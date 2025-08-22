@@ -6,7 +6,7 @@ spring:
 
   security:
     jwt:
-      expiration: 72000000
+      expiration: 86400000
       refresh-token:
         expiration: 604800000
   mail:

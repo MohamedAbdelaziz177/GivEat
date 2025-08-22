@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.Abdelaziz26</groupId>
-    <artifactId>CisHackIt</artifactId>
+    <artifactId>GivEat</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>CisHackIt</name>
-    <description>CisHackIt</description>
+    <name>GivEat</name>
+    <description>GivEat</description>
     <url/>
     <licenses>
         <license/>
