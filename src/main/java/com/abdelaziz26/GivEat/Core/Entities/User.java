@@ -60,6 +60,12 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user")
     private List<RefreshToken> refreshTokens;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Restaurant restaurant;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Charity charity;
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

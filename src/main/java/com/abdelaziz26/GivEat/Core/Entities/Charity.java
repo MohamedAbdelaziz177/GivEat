@@ -1,7 +1,10 @@
 package com.abdelaziz26.GivEat.Core.Entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "charities")
@@ -16,5 +19,24 @@ public class Charity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank(message = "Name is Required")
+    private String name;
+
+    @NotBlank(message = "Phone is Required")
+    private String contactNumber;
+
+    private String description;
+
+    private String address;
+
+    @OneToOne
+    @JoinColumn(name = "user-id")
+    private User user;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "charity")
+    private List<FoodRequest> requests;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "charity")
+    private List<Donation> donations;
 
 }

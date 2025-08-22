@@ -15,4 +15,12 @@ public class Donation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
+
+    @ManyToOne
+    @JoinColumn(name = "charity_id")
+    private Charity charity;
 }

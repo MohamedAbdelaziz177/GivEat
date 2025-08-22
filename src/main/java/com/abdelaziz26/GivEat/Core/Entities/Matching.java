@@ -15,4 +15,15 @@ public class Matching {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    private double matchingScore;
+
+    @ManyToOne
+    @JoinColumn(name = "food_request_id")
+    private FoodRequest foodRequest;
+
+    @ManyToOne
+    @JoinColumn(name = "food_item_id")
+    private FoodItem foodItem;
+
 }
