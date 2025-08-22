@@ -1,0 +1,15 @@
+spring:
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  security:
+    jwt:
+      expiration: 3600000
+      refresh-token:
+        expiration: 604800000
+
+  mail:
+    username: ${SMTP_CLIENT_PROD}
+    password: ${SMTP_PW_PROD}
