@@ -5,5 +5,6 @@ public enum FoodRequestStatus {
     ACCEPTED,
     PACKED,
     DELIVERED,
-    CANCELLED
+    CANCELLED,
+    REJECTED
 }

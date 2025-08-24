@@ -1,5 +1,7 @@
 package com.abdelaziz26.GivEat.Core.Entities;
 
+import com.abdelaziz26.GivEat.Core.Enums.FoodCondition;
+import com.abdelaziz26.GivEat.Core.Enums.QuantityUnit;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,13 +23,19 @@ public class FoodItem {
 
     private String name;
 
+    private String description;
+
     private double quantity;
 
-    private LocalDateTime createdAt;
+    @Enumerated(EnumType.STRING)
+    private QuantityUnit unit;
+
+    @Enumerated(EnumType.STRING)
+    private FoodCondition condition;
+
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     private LocalDateTime expiryDate;
-
-    private String description;
 
     @ManyToOne
     @JoinColumn(name = "restaurant_id")
@@ -38,4 +46,7 @@ public class FoodItem {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "foodItem")
     private List<Matching> matchings;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "foodItem")
+    private List<FoodItemImage> images;
 }

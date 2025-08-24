@@ -1,7 +1,10 @@
 package com.abdelaziz26.GivEat.Core.Entities;
 
+import com.abdelaziz26.GivEat.Core.Enums.FoodCondition;
 import com.abdelaziz26.GivEat.Core.Enums.FoodRequestStatus;
+import com.abdelaziz26.GivEat.Core.Enums.QuantityUnit;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -20,7 +23,21 @@ public class FoodRequest {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private LocalDateTime requestDate;
+    private LocalDateTime requestDate = LocalDateTime.now();
+
+    @Column(nullable = false)
+    @NotBlank
+    private String name;
+
+    private double quantity;
+
+    @Enumerated(EnumType.STRING)
+    private QuantityUnit unit;
+
+    private LocalDateTime expiryLimit;
+
+    @Enumerated(EnumType.STRING)
+    private FoodCondition condition;
 
     @Enumerated(EnumType.STRING)
     private FoodRequestStatus status;

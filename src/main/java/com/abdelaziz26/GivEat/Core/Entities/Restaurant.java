@@ -45,9 +45,16 @@ public class Restaurant {
     @JoinTable(
             name = "restaurant_food-type",
             joinColumns = @JoinColumn(name = "restaurant_id"),
-            inverseJoinColumns = @JoinColumn(name = "dish_id")
+            inverseJoinColumns = @JoinColumn(name = "type_id")
     )
     private List<FoodType> foodTypes;
 
+    @ManyToMany
+    @JoinTable(
+            name = "restaurant_dishes",
+            joinColumns = @JoinColumn(name = "restaurant_id"),
+            inverseJoinColumns = @JoinColumn(name = "dish_id")
+    )
+    private List<Dish> dishes;
 
 }

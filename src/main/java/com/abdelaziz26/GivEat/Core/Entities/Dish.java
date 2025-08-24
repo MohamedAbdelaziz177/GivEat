@@ -1,27 +1,28 @@
 package com.abdelaziz26.GivEat.Core.Entities;
 
-import com.abdelaziz26.GivEat.Core.Enums.FoodTypeEn;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
-@Table(name = "food-types")
+@Table(name = "dishes")
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Getter
 @Setter
-public class FoodType {
+public class Dish {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Enumerated(EnumType.STRING)
-    private FoodTypeEn name;
+    @Column(nullable = false, unique = true)
+    private String name;
 
-    @ManyToMany(mappedBy = "foodTypes")
+    @ManyToMany(mappedBy = "dishes")
     private List<Restaurant> restaurants;
 }
