@@ -17,7 +17,7 @@ public class CloudinaryService {
 
     private static final String[] VALID_EXTENSIONS = {"jpg", "jpeg", "png", "gif"};
 
-    public String upload(MultipartFile file) throws IOException {
+    public String upload(MultipartFile file, String subFolder) throws IOException {
 
         if (file.isEmpty())
             throw new IOException("File is empty");
@@ -40,7 +40,7 @@ public class CloudinaryService {
 
         return cloudinary.uploader().upload(file.getBytes(),
                 Map.of(
-                        "folder", "CisHackIt",
+                        "folder", subFolder,
                         "resource_type", "auto",
                         "public_id", file.getOriginalFilename(),
                         "overwrite", true

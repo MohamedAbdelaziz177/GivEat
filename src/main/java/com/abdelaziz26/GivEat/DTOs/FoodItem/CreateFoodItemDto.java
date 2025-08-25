@@ -1,6 +1,7 @@
 package com.abdelaziz26.GivEat.DTOs.FoodItem;
 
 
+import com.abdelaziz26.GivEat.DTOs.Dto;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -16,7 +17,7 @@ import java.util.List;
 @Setter
 @Getter
 @Builder
-public class CreateFoodItemDto {
+public class CreateFoodItemDto extends Dto{
 
     @Size(min = 4, max = 20)
     private String name;

@@ -7,7 +7,7 @@ import lombok.*;
 import java.util.List;
 
 @Entity
-@Table(name = "food-types")
+@Table(name = "food_types")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

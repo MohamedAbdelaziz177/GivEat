@@ -1,6 +1,7 @@
 package com.abdelaziz26.GivEat.DTOs.Restaurant;
 
 import com.abdelaziz26.GivEat.Core.Enums.FoodTypeEn;
+import com.abdelaziz26.GivEat.DTOs.Dto;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
@@ -15,7 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class CreateRestaurantDto {
+public class CreateRestaurantDto extends Dto {
 
     private MultipartFile logo;
 

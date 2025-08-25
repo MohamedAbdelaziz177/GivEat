@@ -3,8 +3,8 @@ package com.abdelaziz26.GivEat.Core.Entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
-@Table(name = "food-item-images")
+//@Entity
+//@Table(name = "food-item-images")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -18,7 +18,7 @@ public class FoodItemImage {
 
     private String imageUrl;
 
-    @ManyToOne
-    @JoinColumn(name = "food-item-id")
-    private FoodItem foodItem;
+    //@ManyToOne
+    //@JoinColumn(name = "food-item-id")
+    //private FoodItem foodItem;
 }

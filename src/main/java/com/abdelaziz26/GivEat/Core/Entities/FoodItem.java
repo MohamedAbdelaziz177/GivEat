@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "food-items")
+@Table(name = "food_items")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -47,6 +47,9 @@ public class FoodItem {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "foodItem")
     private List<Matching> matchings;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "foodItem")
-    private List<FoodItemImage> images;
+    //@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "foodItem")
+    //private List<FoodItemImage> images;
+
+    @ElementCollection
+    private List<String> imagesUrls;
 }

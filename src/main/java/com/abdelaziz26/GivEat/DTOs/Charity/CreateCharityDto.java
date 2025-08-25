@@ -1,5 +1,6 @@
 package com.abdelaziz26.GivEat.DTOs.Charity;
 
+import com.abdelaziz26.GivEat.DTOs.Dto;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class CreateCharityDto {
+public class CreateCharityDto extends Dto {
 
     @NotBlank
     private String name;

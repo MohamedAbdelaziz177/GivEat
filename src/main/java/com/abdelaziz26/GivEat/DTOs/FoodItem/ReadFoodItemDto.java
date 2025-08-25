@@ -1,5 +1,6 @@
 package com.abdelaziz26.GivEat.DTOs.FoodItem;
 
+import com.abdelaziz26.GivEat.DTOs.Dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -14,7 +15,7 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-public class ReadFoodItemDto {
+public class ReadFoodItemDto extends Dto {
 
     private Long id;
 

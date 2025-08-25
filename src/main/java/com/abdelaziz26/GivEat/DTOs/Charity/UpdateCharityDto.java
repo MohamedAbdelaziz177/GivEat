@@ -1,5 +1,6 @@
 package com.abdelaziz26.GivEat.DTOs.Charity;
 
+import com.abdelaziz26.GivEat.DTOs.Dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -11,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class UpdateCharityDto {
+public class UpdateCharityDto extends Dto {
 
     @NotBlank
     private String name;

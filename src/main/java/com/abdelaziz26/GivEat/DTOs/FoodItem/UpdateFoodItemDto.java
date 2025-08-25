@@ -1,5 +1,6 @@
 package com.abdelaziz26.GivEat.DTOs.FoodItem;
 
+import com.abdelaziz26.GivEat.DTOs.Dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -12,7 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
-public class UpdateFoodItemDto {
+public class UpdateFoodItemDto extends Dto{
 
     @Size(min = 4, max = 20)
     private String name;

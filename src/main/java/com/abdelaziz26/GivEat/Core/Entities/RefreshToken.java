@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.util.Date;
 
 @Entity
-@Table(name = "refresh-tokens")
+@Table(name = "refresh_tokens")
 @Getter
 @Setter
 @NoArgsConstructor
