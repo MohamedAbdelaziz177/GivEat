@@ -6,19 +6,11 @@ spring:
     active: dev
 
   datasource:
-    url: ${DB_URL}
-    password: ${DB_PASSWORD}
-    username: ${DB_USER}
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     show-sql: true
-    hibernate:
-      ddl-auto: update
-
-  data:
-    jdbc:
-      dialect: mysql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 
   security:
     jwt:
@@ -29,6 +21,7 @@ spring:
 
     oauth2:
       client:
+
         registration:
           google:
             client-id: ${GOOGLE_CLIENT_ID}

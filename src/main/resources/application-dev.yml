@@ -1,5 +1,10 @@
 spring:
 
+  datasource:
+    url: ${DB_URL_DEV}
+    username: ${DB_USER_DEV}
+    password: ${DB_PASSWORD_DEV}
+
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -12,4 +17,3 @@ spring:
   mail:
     username: ${SMTP_CLIENT_DEV}
     password: ${SMTP_PW_DEV}
-

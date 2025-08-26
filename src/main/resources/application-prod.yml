@@ -1,8 +1,19 @@
 spring:
 
+  datasource:
+
+    url: ${DB_URL_PROD}
+    password: ${DB_USER_PROD}
+    username: ${DB_PASSWORD_PROD}
+    driver-class-name: org.postgresql.Driver
+
   jpa:
     hibernate:
       ddl-auto: validate
+
+  data:
+    jdbc:
+      dialect: postgresql
 
   security:
     jwt:
@@ -13,3 +24,4 @@ spring:
   mail:
     username: ${SMTP_CLIENT_PROD}
     password: ${SMTP_PW_PROD}
+
