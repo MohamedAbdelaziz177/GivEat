@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "requests")
+@Table(name = "food-requests")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -20,7 +20,7 @@ import java.util.List;
 public class FoodRequest {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private LocalDateTime requestDate = LocalDateTime.now();

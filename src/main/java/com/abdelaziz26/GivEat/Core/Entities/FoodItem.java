@@ -6,19 +6,19 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "food_items")
-@NoArgsConstructor
+@Table(name = "food-items")
 @AllArgsConstructor
-@Builder
+@NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class FoodItem {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -52,4 +52,15 @@ public class FoodItem {
 
     @ElementCollection
     private List<String> imagesUrls;
+
+   //public FoodItem setImages(List<String> imagesUrls) {
+   //    List<FoodItemImage> images = new ArrayList<>();
+   //    for (String imageUrl : imagesUrls) {
+   //        images.add(FoodItemImage.builder()
+   //                .imageUrl(imageUrl)
+   //                .foodItem(this)
+   //                .build());
+   //    }
+   //    return this;
+   //}
 }

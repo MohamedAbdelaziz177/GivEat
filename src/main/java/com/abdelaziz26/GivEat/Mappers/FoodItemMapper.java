@@ -2,11 +2,9 @@ package com.abdelaziz26.GivEat.Mappers;
 
 
 import com.abdelaziz26.GivEat.Core.Entities.FoodItem;
-import com.abdelaziz26.GivEat.Core.Entities.FoodItemImage;
 import com.abdelaziz26.GivEat.Core.Enums.FoodCondition;
 import com.abdelaziz26.GivEat.Core.Enums.QuantityUnit;
 import com.abdelaziz26.GivEat.Core.Interfaces.Mapper;
-import com.abdelaziz26.GivEat.Core.MagicValues;
 import com.abdelaziz26.GivEat.DTOs.FoodItem.CreateFoodItemDto;
 import com.abdelaziz26.GivEat.DTOs.FoodItem.ReadFoodItemDto;
 import com.abdelaziz26.GivEat.DTOs.FoodItem.UpdateFoodItemDto;
@@ -14,9 +12,8 @@ import com.abdelaziz26.GivEat.Utils.CloudinaryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -39,7 +36,7 @@ public class FoodItemMapper implements Mapper<FoodItem, ReadFoodItemDto, CreateF
         //        })
         //        .toList();
 
-        return FoodItem.builder()
+        return com.abdelaziz26.GivEat.Core.Entities.FoodItem.builder()
                 .name(createFoodItemDto.getName())
                 .description(createFoodItemDto.getDescription())
                 .quantity(createFoodItemDto.getQuantity())
@@ -48,6 +45,7 @@ public class FoodItemMapper implements Mapper<FoodItem, ReadFoodItemDto, CreateF
                 .expiryDate(createFoodItemDto.getExpiryDate())
                 .imagesUrls(imagesUrls)
                 .build();
+
     }
 
     @Override
@@ -75,4 +73,6 @@ public class FoodItemMapper implements Mapper<FoodItem, ReadFoodItemDto, CreateF
         foodItem.setExpiryDate(updateFoodItemDto.getExpiryDate());
         return foodItem;
     }
+
+
 }
