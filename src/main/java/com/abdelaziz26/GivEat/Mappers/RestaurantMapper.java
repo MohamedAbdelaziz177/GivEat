@@ -1,6 +1,7 @@
 package com.abdelaziz26.GivEat.Mappers;
 
 import com.abdelaziz26.GivEat.Core.Entities.Restaurant;
+import com.abdelaziz26.GivEat.Core.Enums.FoodTypeEn;
 import com.abdelaziz26.GivEat.Core.Interfaces.Mapper;
 import com.abdelaziz26.GivEat.Core.MagicValues;
 import com.abdelaziz26.GivEat.DTOs.Charity.CreateCharityDto;
@@ -13,12 +14,12 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class RestaurantMapper implements Mapper<Restaurant, ReadRestaurantDto, CreateRestaurantDto, UpdateRestaurantDto> {
 
-    private final CloudinaryService cloudinaryService;
 
     @Override
     public Restaurant toEntity(CreateRestaurantDto createRestaurantDto, Object... extra) {
@@ -52,13 +53,6 @@ public class RestaurantMapper implements Mapper<Restaurant, ReadRestaurantDto, C
         restaurant.setContactNumber(updateRestaurantDto.getContactNumber());
         restaurant.setDescription(updateRestaurantDto.getDescription());
         restaurant.setAddress(updateRestaurantDto.getLocations().get(0));
-
-        try {
-            restaurant.setImageUrl(cloudinaryService.upload(updateRestaurantDto.getLogo(),
-                    MagicValues.RESTAURANT_FOLDER));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
 
         return restaurant;
     }

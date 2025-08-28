@@ -13,4 +13,5 @@ public interface RestaurantService {
     List<ReadRestaurantDto> getAll();
     ReadRestaurantDto create(CreateRestaurantDto createRestaurantDto) throws IOException;
     ReadRestaurantDto update(Long id, UpdateRestaurantDto updateRestaurantDto) throws IOException;
+    void delete(Long id);
 }

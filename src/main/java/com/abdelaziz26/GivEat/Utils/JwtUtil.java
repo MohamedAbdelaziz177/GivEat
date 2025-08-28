@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
 import java.security.Key;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -76,7 +77,7 @@ public class JwtUtil {
     }
 
     public Date getExpiry(){
-        return new Date(System.currentTimeMillis() + Long.parseLong(accessTokenExpiration));
+        return new Date(System.currentTimeMillis() + Long.parseLong(accessTokenExpiration) * 1000 * 60 * 60 * 24);
     }
 
     public boolean isExpired(String token) {
@@ -175,7 +176,7 @@ public class JwtUtil {
         tokenResponse.setAccessToken(generateToken(user,new HashMap<>()));
         tokenResponse.setRefreshToken(generateRefreshToken(user.getId()).getToken());
         tokenResponse.setSuccess(Boolean.TRUE);
-
+        tokenResponse.setAccessTokenExpiry(getExpiry());
         return tokenResponse;
     }
 

@@ -9,6 +9,7 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.nio.file.attribute.UserPrincipal;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-public class User implements UserDetails {
+public class User implements UserDetails, UserPrincipal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -95,5 +96,10 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    @Override
+    public String getName() {
+        return this.email;
     }
 }

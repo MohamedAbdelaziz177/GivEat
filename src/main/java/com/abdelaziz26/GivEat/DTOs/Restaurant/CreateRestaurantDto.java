@@ -33,8 +33,7 @@ public class CreateRestaurantDto extends Dto {
     private String description;
 
     @Size(min = 1)
-    @Enumerated(EnumType.STRING)
-    List<FoodTypeEn> foodTypes;
+    List<String> foodTypes;
 
     @Size(min = 1)
     List<String> dishes;

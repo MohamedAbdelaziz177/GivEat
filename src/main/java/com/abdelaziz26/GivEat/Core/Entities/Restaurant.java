@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -47,7 +48,7 @@ public class Restaurant {
             joinColumns = @JoinColumn(name = "restaurant_id"),
             inverseJoinColumns = @JoinColumn(name = "type_id")
     )
-    private List<FoodType> foodTypes;
+    private List<FoodType> foodTypes = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(
@@ -55,6 +56,6 @@ public class Restaurant {
             joinColumns = @JoinColumn(name = "restaurant_id"),
             inverseJoinColumns = @JoinColumn(name = "dish_id")
     )
-    private List<Dish> dishes;
+    private List<Dish> dishes = new ArrayList<>();
 
 }

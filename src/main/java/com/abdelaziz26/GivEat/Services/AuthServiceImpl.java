@@ -76,7 +76,7 @@ public class AuthServiceImpl implements AuthService {
 
 
         Role role = roleRepository
-                .findByName(RoleEn.valueOf(registerDto.getRole().toString()))
+                .findByName(RoleEn.valueOf("ROLE_" + registerDto.getRole().toUpperCase()))
                 .orElseThrow(() -> new NoSuchElementException("No such role found"));
 
         User newUser = User.builder()

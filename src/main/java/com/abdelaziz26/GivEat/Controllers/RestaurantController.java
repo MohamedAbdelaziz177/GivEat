@@ -8,6 +8,7 @@ import com.abdelaziz26.GivEat.DTOs.Restaurant.UpdateRestaurantDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -35,7 +36,7 @@ public class RestaurantController {
     }
 
     @PostMapping
-    public ResponseEntity<ApiResponse<ReadRestaurantDto>> create(@RequestBody CreateRestaurantDto createRestaurantDto) throws IOException {
+    public ResponseEntity<ApiResponse<ReadRestaurantDto>> create(@ModelAttribute CreateRestaurantDto createRestaurantDto) throws IOException {
         ReadRestaurantDto readRestaurantDto = restaurantService.create(createRestaurantDto);
         ApiResponse<ReadRestaurantDto> apiResponse = ApiResponse.createSuccessResponse(readRestaurantDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
@@ -45,6 +46,13 @@ public class RestaurantController {
     public ResponseEntity<ApiResponse<ReadRestaurantDto>> update(@PathVariable Long id, @RequestBody UpdateRestaurantDto updateRestaurantDto) throws IOException {
         ReadRestaurantDto readRestaurantDto = restaurantService.update(id, updateRestaurantDto);
         ApiResponse<ReadRestaurantDto> apiResponse = ApiResponse.createSuccessResponse(readRestaurantDto);
+        return ResponseEntity.ok(apiResponse);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse<Void>> delete(@PathVariable Long id) {
+        restaurantService.delete(id);
+        ApiResponse<Void> apiResponse = ApiResponse.createSuccessResponse(null);
         return ResponseEntity.ok(apiResponse);
     }
 }

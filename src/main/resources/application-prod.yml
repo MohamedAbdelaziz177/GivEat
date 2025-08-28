@@ -17,9 +17,9 @@ spring:
 
   security:
     jwt:
-      expiration: 900000
+      expiration: 15 #m
       refresh-token:
-        expiration: 604800000
+        expiration: 15 #d
 
   mail:
     username: ${SMTP_CLIENT_PROD}

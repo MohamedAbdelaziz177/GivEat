@@ -7,13 +7,13 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
 
   security:
     jwt:
-      expiration: 86400000
+      expiration: 1 #d
       refresh-token:
-        expiration: 604800000
+        expiration: 15 #d
   mail:
     username: ${SMTP_CLIENT_DEV}
     password: ${SMTP_PW_DEV}

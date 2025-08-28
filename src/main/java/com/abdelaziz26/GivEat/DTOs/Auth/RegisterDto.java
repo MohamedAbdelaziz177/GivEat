@@ -4,6 +4,7 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -35,5 +36,6 @@ public class RegisterDto {
     private String confirmPassword;
 
     @NotBlank(message = "Role is required")
-    public UserOrientedRole role;
+    @Pattern(regexp = "^(?i)(restaurant|charity)$", message = "Role must be either 'restaurant' or 'charity'")
+    public String role;
 }
