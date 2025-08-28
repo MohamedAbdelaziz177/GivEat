@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -28,5 +29,7 @@ public class CreateCharityDto extends Dto {
 
     @Size(min = 1)
     private List<String> locations;
+
+    private MultipartFile logo;
 
 }

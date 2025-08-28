@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class CharityMapper implements Mapper<Charity, ReadCharityDto, CreateCharityDto, UpdateCharityDto> {
 
     @Override
-    public Charity toEntity(CreateCharityDto dto) {
+    public Charity toEntity(CreateCharityDto dto, Object... extra) {
 
         if(dto == null)
             return null;
@@ -21,6 +21,7 @@ public class CharityMapper implements Mapper<Charity, ReadCharityDto, CreateChar
                 .name(dto.getName())
                 .contactNumber(dto.getContactNumber())
                 .description(dto.getDescription())
+                .imageUrl(extra[0].toString() )
                 .build();
     }
 
@@ -42,9 +43,6 @@ public class CharityMapper implements Mapper<Charity, ReadCharityDto, CreateChar
 
     @Override
     public Charity toEntity(UpdateCharityDto dto, Charity charity) {
-
-        if(dto == null)
-            return null;
 
         charity.setName(dto.getName());
         charity.setContactNumber(dto.getContactNumber());

@@ -1,5 +1,7 @@
 package com.abdelaziz26.GivEat.DTOs.Auth;
 
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -31,4 +33,7 @@ public class RegisterDto {
 
     @NotBlank(message = "Confirm password is required")
     private String confirmPassword;
+
+    @NotBlank(message = "Role is required")
+    public UserOrientedRole role;
 }

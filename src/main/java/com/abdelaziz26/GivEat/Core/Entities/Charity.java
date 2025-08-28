@@ -27,7 +27,10 @@ public class Charity {
 
     private String description;
 
+    @NotBlank
     private String address;
+
+    private String imageUrl;
 
     @OneToOne
     @JoinColumn(name = "user-id")

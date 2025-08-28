@@ -23,19 +23,6 @@ public class FoodItemMapper implements Mapper<FoodItem, ReadFoodItemDto, CreateF
 
     @Override
     public FoodItem toEntity(CreateFoodItemDto createFoodItemDto, List<String> imagesUrls) {
-
-        //List<String> imageUrls = createFoodItemDto
-        //        .getImages()
-        //        .stream()
-        //        .map(image -> {
-        //            try {
-        //                return cloudinaryService.upload(image, MagicValues.FOOD_FOLDER);
-        //            } catch (IOException e) {
-        //                throw new RuntimeException(e);
-        //            }
-        //        })
-        //        .toList();
-
         return com.abdelaziz26.GivEat.Core.Entities.FoodItem.builder()
                 .name(createFoodItemDto.getName())
                 .description(createFoodItemDto.getDescription())
@@ -64,7 +51,6 @@ public class FoodItemMapper implements Mapper<FoodItem, ReadFoodItemDto, CreateF
 
     @Override
     public FoodItem toEntity(UpdateFoodItemDto updateFoodItemDto, FoodItem foodItem) {
-
         foodItem.setName(updateFoodItemDto.getName());
         foodItem.setDescription(updateFoodItemDto.getDescription());
         foodItem.setQuantity(updateFoodItemDto.getQuantity());

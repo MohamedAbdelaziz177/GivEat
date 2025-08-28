@@ -1,5 +1,6 @@
 package com.abdelaziz26.GivEat.Core.Entities;
 
+import com.abdelaziz26.GivEat.Core.Enums.RoleEn;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -22,13 +23,14 @@ public class Role implements GrantedAuthority {
 
     @Column(unique = true, nullable = false)
     @NotBlank(message = "Role name is required")
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private RoleEn name;
 
     @OneToMany(mappedBy = "role")
     private List<User> users;
 
     @Override
     public String getAuthority() {
-        return name;
+        return name.toString();
     }
 }

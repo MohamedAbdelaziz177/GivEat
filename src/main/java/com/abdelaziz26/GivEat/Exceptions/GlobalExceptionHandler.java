@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AuthorizationServiceException;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -58,6 +59,12 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(res);
     }
 
+    @ExceptionHandler(AuthorizationServiceException.class)
+    public ResponseEntity<ApiResponse<Void>> handleAuthorizationServiceException(AuthorizationServiceException ex){
+        ApiResponse<Void> res = logErrorAndCreateFailureResponse(ex);
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(res);
+    }
+
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ApiResponse<Void>> handleIllegalArgumentException(IllegalArgumentException ex){
 
@@ -82,7 +89,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(AuthenticationServiceException.class)
     public ResponseEntity<ApiResponse<Void>> handleAuthenticationServiceException(AuthenticationServiceException ex){
         ApiResponse<Void> res = logErrorAndCreateFailureResponse(ex);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(res);
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(res);
     }
 
     //@ExceptionHandler(StripeException.class)

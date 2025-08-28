@@ -1,5 +1,7 @@
 package com.abdelaziz26.GivEat.Services;
 
+import com.abdelaziz26.GivEat.Core.Enums.RoleEn;
+import com.abdelaziz26.GivEat.Core.MagicValues;
 import com.abdelaziz26.GivEat.DTOs.Auth.LoginDto;
 import com.abdelaziz26.GivEat.DTOs.Auth.RegisterDto;
 import com.abdelaziz26.GivEat.DTOs.Auth.ResetPasswordDto;
@@ -72,7 +74,10 @@ public class AuthServiceImpl implements AuthService {
         if(!registerDto.getPassword().equals(registerDto.getConfirmPassword()))
             throw new AuthenticationServiceException("Passwords do not match");
 
-        Role role = roleRepository.findByName("ROLE_USER").orElseThrow();
+
+        Role role = roleRepository
+                .findByName(RoleEn.valueOf(registerDto.getRole().toString()))
+                .orElseThrow(() -> new NoSuchElementException("No such role found"));
 
         User newUser = User.builder()
                 .email(registerDto.getEmail())
@@ -191,7 +196,7 @@ public class AuthServiceImpl implements AuthService {
         Cookie cookie = new Cookie("refreshToken", refreshToken);
         cookie.setHttpOnly(true);
         cookie.setPath("/api/auth/refresh-token");
-        cookie.setMaxAge(3600 * 24 * 15);
+        cookie.setMaxAge(MagicValues.HTTP_ONLY_COOKIE_AGE);
 
         response.addCookie(cookie);
     }

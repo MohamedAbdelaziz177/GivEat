@@ -21,24 +21,16 @@ public class RestaurantMapper implements Mapper<Restaurant, ReadRestaurantDto, C
     private final CloudinaryService cloudinaryService;
 
     @Override
-    public Restaurant toEntity(CreateRestaurantDto createRestaurantDto) {
+    public Restaurant toEntity(CreateRestaurantDto createRestaurantDto, Object... extra) {
 
-        Restaurant restaurant = Restaurant.builder()
+        return Restaurant.builder()
                 .name(createRestaurantDto.getName())
                 .contactNumber(createRestaurantDto.getContactNumber())
                 .description(createRestaurantDto.getDescription())
                 .address(createRestaurantDto.getLocations().get(0))
+                .imageUrl(extra[0].toString())
                 .build();
 
-        try {
-            restaurant.setImageUrl(cloudinaryService.upload(createRestaurantDto.getLogo(),
-                    MagicValues.RESTAURANT_FOLDER));
-        }
-        catch (IOException e){
-            throw new RuntimeException("Error uploading file to Cloudinary");
-        }
-
-        return restaurant;
     }
 
     @Override
