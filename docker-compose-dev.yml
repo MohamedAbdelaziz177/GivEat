@@ -1,11 +1,22 @@
 services:
+
+  giveat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+    env_file:
+      - .env
+
   postgres:
     environment:
-      POSTGRES_USER: ${DB_USER_DEV}
-      POSTGRES_PASSWORD: ${DB_PASSWORD_DEV}
+      POSTGRES_USER: ${DB_USER_DEV:-admin}
+      POSTGRES_PASSWORD: ${DB_PASSWORD_DEV:-1234}
       POSTGRES_DB: giveat_dev
+
 
   pgadmin:
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL_DEV}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD_DEV}
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL_DEV:-mohamecabdelaziz66@gmail.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD_DEV:-1234}
