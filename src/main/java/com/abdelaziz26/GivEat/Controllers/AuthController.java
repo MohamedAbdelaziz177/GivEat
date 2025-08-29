@@ -59,7 +59,7 @@ public class AuthController {
      */
     @Operation(summary = "Register new user", description = "Registers a new user and sends confirmation email.")
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegisterDto registerRequest) {
+    public ResponseEntity<TokenResponse> register(@RequestBody RegisterDto registerRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(authService.register(registerRequest));
     }
 

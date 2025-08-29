@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public interface AuthService  {
 
     TokenResponse login(LoginDto loginDto, HttpServletResponse response);
-    String register(RegisterDto registerDto);
+    TokenResponse register(RegisterDto registerDto);
     TokenResponse refreshToken(HttpServletRequest request, HttpServletResponse response);
     void resendOtp(String email);
     void confirmUser(String email, Long otp);

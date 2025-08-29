@@ -49,7 +49,7 @@ public class FoodItemController {
     }
 
     @PostMapping
-    public ResponseEntity<ApiResponse<ReadFoodItemDto>> create(@RequestBody CreateFoodItemDto createFoodItemDto) throws IOException {
+    public ResponseEntity<ApiResponse<ReadFoodItemDto>> create(@ModelAttribute CreateFoodItemDto createFoodItemDto) throws IOException {
         ReadFoodItemDto readFoodItemDto = foodItemService.create(createFoodItemDto);
         ApiResponse<ReadFoodItemDto> apiResponse = ApiResponse.createSuccessResponse(readFoodItemDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);

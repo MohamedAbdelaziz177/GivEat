@@ -64,7 +64,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public String register(RegisterDto registerDto) {
+    public TokenResponse register(RegisterDto registerDto) {
 
         Optional<User> user = userRepository.findByEmail(registerDto.getEmail());
 
@@ -95,9 +95,11 @@ public class AuthServiceImpl implements AuthService {
         newUser.setConfirmationOtpExpiry(new Date(System.currentTimeMillis() + 1000 * 60 * 2));
         newUser.setVerified(false);
 
+        TokenResponse tokenResponse = jwtService.getTokens(newUser.getEmail());
+
         userRepository.save(newUser);
 
-        return "User Registered Successfully - check ur email for confirmation";
+        return tokenResponse;
     }
 
     public TokenResponse refreshToken(HttpServletRequest request, HttpServletResponse response) {
