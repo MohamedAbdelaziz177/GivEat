@@ -3,8 +3,8 @@ spring:
   datasource:
 
     url: ${DB_URL_PROD}
-    password: ${DB_USER_PROD}
-    username: ${DB_PASSWORD_PROD}
+    password: ${DB_PASSWORD_PROD}
+    username: ${DB_USER_PROD}
     driver-class-name: org.postgresql.Driver
 
   jpa:
