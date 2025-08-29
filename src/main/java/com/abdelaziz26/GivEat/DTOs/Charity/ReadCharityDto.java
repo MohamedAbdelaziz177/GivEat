@@ -19,4 +19,6 @@ public class ReadCharityDto extends Dto {
     private String address;
 
     private String description;
+
+    private String logoUrl;
 }

@@ -23,6 +23,5 @@ public class UpdateCharityDto extends Dto {
     @Size(min = 10, max = 200)
     private String description;
 
-    @Size(min = 1)
-    private List<String> locations;
+    private String location;
 }

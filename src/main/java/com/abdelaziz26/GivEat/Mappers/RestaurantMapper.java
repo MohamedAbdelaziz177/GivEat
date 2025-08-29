@@ -56,7 +56,7 @@ public class RestaurantMapper implements Mapper<Restaurant, ReadRestaurantDto, C
         restaurant.setName(updateRestaurantDto.getName());
         restaurant.setContactNumber(updateRestaurantDto.getContactNumber());
         restaurant.setDescription(updateRestaurantDto.getDescription());
-        restaurant.setAddress(updateRestaurantDto.getLocations().get(0));
+        restaurant.setAddress(updateRestaurantDto.getLocations());
 
         return restaurant;
     }

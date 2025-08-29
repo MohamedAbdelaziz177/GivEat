@@ -14,4 +14,5 @@ public interface CharityService {
     List<ReadCharityDto> getAll();
     ReadCharityDto create(CreateCharityDto createCharityDto) throws IOException;
     ReadCharityDto update(Long id, UpdateCharityDto updateCharityDto) throws IOException;
+    void delete(Long id);
 }

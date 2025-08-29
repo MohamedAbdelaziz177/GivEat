@@ -79,4 +79,11 @@ public class CharityServiceImpl implements CharityService {
 
         return charityMapper.toResponse(UpdateCh);
     }
+
+    @Override
+    public void delete(Long id) {
+
+         Charity charity = charityRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Charity not found with id: " + id));
+         charityRepository.delete(charity);
+    }
 }

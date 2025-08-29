@@ -17,7 +17,7 @@ public class CharityMapper implements Mapper<Charity, ReadCharityDto, CreateChar
             return null;
 
         return Charity.builder()
-                .address(dto.getLocations().get(0))
+                .address(dto.getLocation())
                 .name(dto.getName())
                 .contactNumber(dto.getContactNumber())
                 .description(dto.getDescription())
@@ -37,6 +37,7 @@ public class CharityMapper implements Mapper<Charity, ReadCharityDto, CreateChar
                 .contactNumber(charity.getContactNumber())
                 .description(charity.getDescription())
                 .address(charity.getAddress())
+                .logoUrl(charity.getImageUrl())
                 .build();
 
     }
@@ -47,7 +48,7 @@ public class CharityMapper implements Mapper<Charity, ReadCharityDto, CreateChar
         charity.setName(dto.getName());
         charity.setContactNumber(dto.getContactNumber());
         charity.setDescription(dto.getDescription());
-        charity.setAddress(dto.getLocations().get(0));
+        charity.setAddress(dto.getLocation());
 
         return charity;
     }
