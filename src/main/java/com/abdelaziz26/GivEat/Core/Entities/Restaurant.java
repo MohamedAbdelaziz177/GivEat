@@ -30,6 +30,7 @@ public class Restaurant {
 
     private String address;
 
+    @Column(nullable = true)
     private String imageUrl;
 
     @OneToOne

@@ -30,6 +30,7 @@ public class Charity {
     @NotBlank
     private String address;
 
+    @Column(nullable = true)
     private String imageUrl;
 
     @OneToOne

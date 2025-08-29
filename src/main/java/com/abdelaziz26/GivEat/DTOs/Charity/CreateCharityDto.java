@@ -1,6 +1,7 @@
 package com.abdelaziz26.GivEat.DTOs.Charity;
 
 import com.abdelaziz26.GivEat.DTOs.Dto;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,6 +31,7 @@ public class CreateCharityDto extends Dto {
     @Size(min = 1)
     private String location;
 
+    @Nullable
     private MultipartFile logo;
 
 }
