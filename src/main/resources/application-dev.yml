@@ -1,9 +1,9 @@
 spring:
 
   datasource:
-    url: ${DB_URL_DEV}
-    username: ${DB_USER_DEV}
-    password: ${DB_PASSWORD_DEV}
+    url: jdbc:postgresql://postgres:5432/giveat_dev #${DB_URL_DOCKER}
+    username: admin #${DB_USER_DEV:admin}
+    password: 1234 #${DB_PASSWORD_DEV:1234}
 
   jpa:
     hibernate:

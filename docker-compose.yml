@@ -1,5 +1,19 @@
 services:
 
+  giveat:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: givEat_container
+    ports:
+      - '8080:8080'
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+    networks:
+    - giveat
+
   postgres:
     image: postgres
     container_name: postgres_GivEat
