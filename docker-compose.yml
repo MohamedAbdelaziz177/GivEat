@@ -11,6 +11,8 @@ services:
       - postgres
       - redis
     restart: unless-stopped
+    env_file:
+      - .env
     networks:
     - giveat
 

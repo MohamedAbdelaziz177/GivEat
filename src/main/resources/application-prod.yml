@@ -1,5 +1,4 @@
 spring:
-
   datasource:
 
     url: ${DB_URL_PROD}
@@ -26,3 +25,7 @@ spring:
     password: ${SMTP_PW_PROD}
 server:
   port: ${PORT:8080}
+
+springdoc:
+  swagger-ui:
+    url: https://reliable-liberation-production-2c83.up.railway.app
