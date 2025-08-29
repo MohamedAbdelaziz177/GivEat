@@ -1,7 +1,9 @@
 services:
-  #givEat:
-  #  environment:
-  #    SPRING_PROFILES_ACTIVE: prod
+  givEat:
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+    env_file:
+      - .env
   postgres:
     environment:
       POSTGRES_USER: ${DB_USER_PROD}

@@ -33,7 +33,10 @@ public class JwtFilter extends OncePerRequestFilter {
                                     @NonNull FilterChain filterChain) throws ServletException, IOException {
 
 
-        if(request.getRequestURI().contains("/api/auth")) {
+        if(request.getRequestURI().contains("/api/auth")
+                || request.getRequestURI().contains("/v3/api-docs")
+                || request.getRequestURI().contains("/swagger-ui")
+                || request.getRequestURI().contains("/swagger-ui.html")) {
             filterChain.doFilter(request, response);
             return;
         }
