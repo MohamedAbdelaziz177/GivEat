@@ -25,7 +25,7 @@ spring:
     password: ${SMTP_PW_PROD}
 server:
   port: ${PORT:8080}
-  address: https://reliable-liberation-production-2c83.up.railway.app
+#  address: https://reliable-liberation-production-2c83.up.railway.app
 
 #springdoc:
 #  swagger-ui:
