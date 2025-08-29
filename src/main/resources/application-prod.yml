@@ -24,4 +24,5 @@ spring:
   mail:
     username: ${SMTP_CLIENT_PROD}
     password: ${SMTP_PW_PROD}
-
+server:
+  port: ${PORT:8080}
