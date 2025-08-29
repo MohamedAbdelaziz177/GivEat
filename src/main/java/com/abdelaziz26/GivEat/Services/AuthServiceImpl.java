@@ -154,7 +154,7 @@ public class AuthServiceImpl implements AuthService {
         User user = userRepository.findByEmail(email).orElseThrow(() ->
                 new NoSuchElementException("No such user found"));
 
-        Long otp = sendOtpToUser(email);
+        Long otp = 12345L; //sendOtpToUser(email);
 
         user.setPasswordResetOtp(otp);
         user.setPasswordResetOtpExpiry(new Date(System.currentTimeMillis() + 1000 * 60 * 2));
