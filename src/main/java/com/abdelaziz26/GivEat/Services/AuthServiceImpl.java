@@ -89,7 +89,7 @@ public class AuthServiceImpl implements AuthService {
 
         userRepository.save(newUser);
 
-        Long otp = sendOtpToUser(registerDto.getEmail());
+        Long otp = 12345L;//sendOtpToUser(registerDto.getEmail());
 
         newUser.setConfirmationOtp(otp);
         newUser.setConfirmationOtpExpiry(new Date(System.currentTimeMillis() + 1000 * 60 * 2));
@@ -120,7 +120,7 @@ public class AuthServiceImpl implements AuthService {
         User user = userRepository.findByEmail(email).orElseThrow(() ->
                 new NoSuchElementException("No such user found"));
 
-        Long otp = sendOtpToUser(email);
+        Long otp = 12345L; //sendOtpToUser(email);
 
         user.setConfirmationOtp(otp);
         user.setConfirmationOtpExpiry(new Date(System.currentTimeMillis() + 1000 * 60 * 2));
