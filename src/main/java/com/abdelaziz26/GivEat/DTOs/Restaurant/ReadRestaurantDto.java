@@ -38,6 +38,5 @@ public class ReadRestaurantDto extends Dto {
     @Size(min = 1)
     List<String> dishes;
 
-    @Size(min = 1)
-    List<String> locations;
+    String locations;
 }

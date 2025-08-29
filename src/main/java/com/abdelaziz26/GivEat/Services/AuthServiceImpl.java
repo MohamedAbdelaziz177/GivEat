@@ -145,8 +145,9 @@ public class AuthServiceImpl implements AuthService {
         user.setConfirmationOtp(0L);
         user.setConfirmationOtpExpiry(new Date());
 
-
+        TokenResponse tokenResponse = jwtService.getTokens(email);
         userRepository.save(user);
+
     }
 
     public void forgetPassword(String email)

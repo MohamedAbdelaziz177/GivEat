@@ -38,7 +38,6 @@ public class CreateRestaurantDto extends Dto {
     @Size(min = 1)
     List<String> dishes;
 
-    @Size(min = 1)
-    List<String> locations;
+    String location;
 
 }

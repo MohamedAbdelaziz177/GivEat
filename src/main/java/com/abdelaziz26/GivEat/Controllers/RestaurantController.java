@@ -35,7 +35,7 @@ public class RestaurantController {
         return ResponseEntity.ok(apiResponse);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<ApiResponse<ReadRestaurantDto>> create(@ModelAttribute CreateRestaurantDto createRestaurantDto) throws IOException {
         ReadRestaurantDto readRestaurantDto = restaurantService.create(createRestaurantDto);
         ApiResponse<ReadRestaurantDto> apiResponse = ApiResponse.createSuccessResponse(readRestaurantDto);

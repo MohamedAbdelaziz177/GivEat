@@ -1,5 +1,7 @@
 package com.abdelaziz26.GivEat.Mappers;
 
+import com.abdelaziz26.GivEat.Core.Entities.Dish;
+import com.abdelaziz26.GivEat.Core.Entities.FoodType;
 import com.abdelaziz26.GivEat.Core.Entities.Restaurant;
 import com.abdelaziz26.GivEat.Core.Enums.FoodTypeEn;
 import com.abdelaziz26.GivEat.Core.Interfaces.Mapper;
@@ -28,7 +30,7 @@ public class RestaurantMapper implements Mapper<Restaurant, ReadRestaurantDto, C
                 .name(createRestaurantDto.getName())
                 .contactNumber(createRestaurantDto.getContactNumber())
                 .description(createRestaurantDto.getDescription())
-                .address(createRestaurantDto.getLocations().get(0))
+                .address(createRestaurantDto.getLocation())
                 .imageUrl(extra[0].toString())
                 .build();
 
@@ -42,7 +44,9 @@ public class RestaurantMapper implements Mapper<Restaurant, ReadRestaurantDto, C
                 .name(restaurant.getName())
                 .logoUrl(restaurant.getImageUrl())
                 .description(restaurant.getDescription())
-                .locations(List.of(restaurant.getAddress()))
+                .locations(restaurant.getAddress())
+                .dishes(restaurant.getDishes().stream().map(Dish::getName).collect(Collectors.toList()))
+                .foodTypes(restaurant.getFoodTypes().stream().map(FoodType::getName).toList())
                 .build();
     }
 
