@@ -26,6 +26,6 @@ spring:
 server:
   port: ${PORT:8080}
 
-springdoc:
-  swagger-ui:
-    url: https://reliable-liberation-production-2c83.up.railway.app
+#springdoc:
+#  swagger-ui:
+#    url: https://reliable-liberation-production-2c83.up.railway.app
