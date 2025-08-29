@@ -31,7 +31,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
 
                 @Server(
                         description = "Production environments",
-                        url = "To be determined"
+                        url = "https://reliable-liberation-production-2c83.up.railway.app"
                 )
         },
         security = {

@@ -12,7 +12,7 @@ public class MailService {
 
     private final JavaMailSender mailSender;
 
-    @Value("${SMTP_CLIENT_DEV}")
+    @Value("${SMTP_CLIENT_PROD}")
     private String from;
 
     public void sendSimpleMail(String to, String subject, String body) {
