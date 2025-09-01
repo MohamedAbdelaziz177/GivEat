@@ -71,16 +71,17 @@ public class FoodItemServiceImpl implements FoodItemService {
             throws IOException {
 
         Long userId = authUtil.getUserId();
-        List<String> imageUrl = new ArrayList<>();
+
+        List<String> imageUrls = new ArrayList<>();
 
         for (MultipartFile img : createFoodItemDto.getImages()) {
-            imageUrl.add(cloudinaryService.upload(img, MagicValues.FOOD_FOLDER));
+            imageUrls.add(cloudinaryService.upload(img, MagicValues.FOOD_FOLDER));
         }
 
         User user = userRepository.findById(userId).orElseThrow(() ->
                 new AuthenticationServiceException("User not found with id: " + userId));
 
-        FoodItem item = foodItemMapper.toEntity(createFoodItemDto, imageUrl);
+        FoodItem item = foodItemMapper.toEntity(createFoodItemDto, imageUrls);
 
         item.setRestaurant(user.getRestaurant());
 

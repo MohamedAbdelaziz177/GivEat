@@ -169,6 +169,7 @@ public class JwtUtil {
         return refTok.get();
     }
 
+    @Transactional
     public TokenResponse getTokens(User user)
     {
         TokenResponse tokenResponse = new TokenResponse();

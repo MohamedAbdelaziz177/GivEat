@@ -48,7 +48,7 @@ public class FoodItemController {
         return ResponseEntity.ok(apiResponse);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<ApiResponse<ReadFoodItemDto>> create(@ModelAttribute CreateFoodItemDto createFoodItemDto) throws IOException {
         ReadFoodItemDto readFoodItemDto = foodItemService.create(createFoodItemDto);
         ApiResponse<ReadFoodItemDto> apiResponse = ApiResponse.createSuccessResponse(readFoodItemDto);
@@ -56,7 +56,7 @@ public class FoodItemController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse<ReadFoodItemDto>> update(@PathVariable Long id, @RequestBody UpdateFoodItemDto updateFoodItemDto) throws IOException {
+    public ResponseEntity<ApiResponse<ReadFoodItemDto>> update(@PathVariable Long id, @ModelAttribute UpdateFoodItemDto updateFoodItemDto) throws IOException {
         ReadFoodItemDto readFoodItemDto = foodItemService.update(id, updateFoodItemDto);
         ApiResponse<ReadFoodItemDto> apiResponse = ApiResponse.createSuccessResponse(readFoodItemDto);
         return ResponseEntity.ok(apiResponse);
