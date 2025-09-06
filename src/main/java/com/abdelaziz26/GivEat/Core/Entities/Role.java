@@ -3,6 +3,7 @@ package com.abdelaziz26.GivEat.Core.Entities;
 import com.abdelaziz26.GivEat.Core.Enums.RoleEn;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -22,7 +23,7 @@ public class Role implements GrantedAuthority {
     private Long id;
 
     @Column(unique = true, nullable = false)
-    @NotBlank(message = "Role name is required")
+    @NotNull(message = "Role name is required")
     @Enumerated(EnumType.STRING)
     private RoleEn name;
 

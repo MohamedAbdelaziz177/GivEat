@@ -1,6 +1,7 @@
 package com.abdelaziz26.GivEat.Configs;
 
 
+import com.abdelaziz26.GivEat.Core.Enums.RoleEn;
 import com.abdelaziz26.GivEat.Filters.JwtFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -40,6 +41,8 @@ public class SecurityConfig {
                                     "/swagger-ui/**",
                                     "/swagger-ui.html")
                             .permitAll()
+                            .requestMatchers("/api/food-request/**").hasRole("CHARITY")
+                            .requestMatchers("/api/food-item/**").hasRole("RESTAURANT")
                             .anyRequest().authenticated();
                 })
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)

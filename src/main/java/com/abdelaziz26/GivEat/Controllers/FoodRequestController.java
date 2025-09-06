@@ -28,7 +28,6 @@ public class FoodRequestController {
     }
 
 
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/all")
     public ResponseEntity<ApiResponse<List<ReadRequestDto>>> getAll() {
         List<ReadRequestDto> readRequestDtoList = foodRequestService.getAll();
@@ -37,7 +36,7 @@ public class FoodRequestController {
     }
 
 
-    @PreAuthorize("hasRole('Charity')")
+
     @GetMapping("/mine")
     public ResponseEntity<ApiResponse<List<ReadRequestDto>>> getByCharity() {
         List<ReadRequestDto> readRequestDtoList = foodRequestService.getByCharity();
@@ -46,7 +45,6 @@ public class FoodRequestController {
     }
 
 
-    @PreAuthorize("hasRole('Charity')")
     @PostMapping("/create")
     public ResponseEntity<ApiResponse<ReadRequestDto>> create(@RequestBody CreateRequestDto createRequestDto) {
         ReadRequestDto readRequestDto = foodRequestService.create(createRequestDto);
@@ -54,7 +52,6 @@ public class FoodRequestController {
         return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
     }
 
-    @PreAuthorize("hasRole('Charity')")
     @PutMapping("/update/{id}")
     public ResponseEntity<ApiResponse<ReadRequestDto>> update(@PathVariable Long id, @RequestBody UpdateRequestDto updateRequestDto) {
         ReadRequestDto readRequestDto = foodRequestService.update(id, updateRequestDto);
