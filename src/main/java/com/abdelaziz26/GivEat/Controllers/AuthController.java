@@ -76,7 +76,7 @@ public class AuthController {
         TokenResponse tokenResponse = authService.refreshToken(request, response);
         return ResponseEntity.ok(AuthResponseDto.builder()
                 .accessToken(tokenResponse.getAccessToken())
-                .expirationDate(null)
+                .expirationDate(tokenResponse.getAccessTokenExpiry())
                 .build());
     }
 

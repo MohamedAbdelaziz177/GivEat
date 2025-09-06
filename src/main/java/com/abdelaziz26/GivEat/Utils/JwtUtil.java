@@ -1,5 +1,6 @@
 package com.abdelaziz26.GivEat.Utils;
 
+import com.abdelaziz26.GivEat.Core.MagicValues;
 import com.abdelaziz26.GivEat.DTOs.Auth.TokenResponse;
 import com.abdelaziz26.GivEat.Core.Entities.RefreshToken;
 import com.abdelaziz26.GivEat.Core.Entities.User;
@@ -151,7 +152,7 @@ public class JwtUtil {
 
         refreshToken.setToken(UUID.randomUUID().toString() + "_" + UUID.randomUUID().toString());
         refreshToken.setRevoked(false);
-        refreshToken.setExpires(new Date(System.currentTimeMillis() + Long.parseLong(refreshTokenExpiration)));
+        refreshToken.setExpires(new Date(System.currentTimeMillis() + MagicValues.HTTP_ONLY_COOKIE_AGE));
         refreshToken.setUser(user);
 
         refreshTokenRepo.save(refreshToken);
@@ -181,6 +182,7 @@ public class JwtUtil {
         return tokenResponse;
     }
 
+    @Transactional
     public TokenResponse getTokens(String email)
     {
         User user = userRepo.findByEmail(email).orElse(null);
