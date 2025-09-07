@@ -21,7 +21,7 @@ public class CharityMapper implements Mapper<Charity, ReadCharityDto, CreateChar
                 .name(dto.getName())
                 .contactNumber(dto.getContactNumber())
                 .description(dto.getDescription())
-                .imageUrl(extra[0].toString() )
+                .imageUrl(extra[0].toString())
                 .build();
     }
 

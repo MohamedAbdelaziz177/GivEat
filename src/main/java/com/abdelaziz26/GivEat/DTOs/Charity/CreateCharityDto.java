@@ -31,7 +31,6 @@ public class CreateCharityDto extends Dto {
     @Size(min = 1)
     private String location;
 
-    @Nullable
     private MultipartFile logo;
 
 }

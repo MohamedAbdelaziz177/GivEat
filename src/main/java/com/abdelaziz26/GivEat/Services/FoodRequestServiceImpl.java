@@ -32,19 +32,19 @@ public class FoodRequestServiceImpl implements FoodRequestService {
     private final RestaurantRepository restaurantRepository;
     private final AuthUtil authUtil;
 
+
     @Override
     public ReadRequestDto getById(Long id) {
         return foodRequestMapper.toResponse(foodRequestRepository.findById(id).orElseThrow());
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @Override
     public List<ReadRequestDto> getAll() {
         List<FoodRequest> foodRequestList = foodRequestRepository.findAll();
         return foodRequestList.stream().map(foodRequestMapper::toResponse).toList();
     }
 
-    @PreAuthorize("hasRole('Charity')")
+    @PreAuthorize("hasRole('CHARITY')")
     @Override
     public List<ReadRequestDto> getByCharity() {
 
@@ -61,19 +61,7 @@ public class FoodRequestServiceImpl implements FoodRequestService {
         return foodRequestList.stream().map(foodRequestMapper::toResponse).toList();
     }
 
-    //public List<ReadRequestDto> getByRestaurant(Long userId) {
-//
-    //    User user = userRepo.findById(userId).orElseThrow(() ->
-    //            new AuthenticationServiceException("User not found"));
-//
-    //    Restaurant restaurant = restaurantRepository.findByUser_Id(user.getId()).orElseThrow(() ->
-    //            new AuthorizationServiceException("Charity not found"));
-    //
-    //    List<FoodRequest> foodRequestList = foodRequestRepository.findByRestaurant(restaurant);
-    //
-    //}
-
-    @PreAuthorize("hasRole('Charity')")
+    @PreAuthorize("hasRole('CHARITY')")
     @Override
     public ReadRequestDto create(CreateRequestDto createRequestDto) {
 
@@ -92,7 +80,7 @@ public class FoodRequestServiceImpl implements FoodRequestService {
         return foodRequestMapper.toResponse(foodRequestRepository.save(foodRequest));
     }
 
-    @PreAuthorize("hasRole('Charity')")
+    @PreAuthorize("hasRole('CHARITY')")
     @Override
     public ReadRequestDto update(Long id, UpdateRequestDto updateRequestDto) {
 

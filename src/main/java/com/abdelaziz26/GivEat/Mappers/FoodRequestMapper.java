@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class FoodRequestMapper implements Mapper<FoodRequest, ReadRequestDto, CreateRequestDto, UpdateRequestDto> {
 
-    private CharityMapper charityMapper;
+    private final CharityMapper charityMapper;
 
     @Override
     public FoodRequest toEntity(CreateRequestDto createRequestDto) {
