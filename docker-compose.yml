@@ -1,12 +1,11 @@
 services:
-
   giveat:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: givEat_container
+    container_name: app
     ports:
-      - '8080:8080'
+      - '8088:8088'
     depends_on:
       - postgres
       - redis
@@ -15,6 +14,12 @@ services:
       - .env
     networks:
     - giveat
+
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U admin -d giveat_dev" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   postgres:
     image: postgres
