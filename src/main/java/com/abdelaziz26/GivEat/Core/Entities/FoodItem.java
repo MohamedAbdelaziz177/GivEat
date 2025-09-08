@@ -1,6 +1,8 @@
 package com.abdelaziz26.GivEat.Core.Entities;
 
+import com.abdelaziz26.GivEat.Core.Enums.FoodCategory;
 import com.abdelaziz26.GivEat.Core.Enums.FoodCondition;
+import com.abdelaziz26.GivEat.Core.Enums.FoodItemStatus;
 import com.abdelaziz26.GivEat.Core.Enums.QuantityUnit;
 import jakarta.persistence.*;
 import lombok.*;
@@ -33,6 +35,18 @@ public class FoodItem {
     @Enumerated(EnumType.STRING)
     private FoodCondition condition;
 
+    @Enumerated(EnumType.STRING)
+    private FoodCategory foodCategory;
+
+    @Enumerated(EnumType.STRING)
+    private FoodItemStatus foodItemStatus;
+
+    private boolean halalCertified;
+
+    private boolean kosherCertified;
+
+    private boolean vegetarianFriendly;
+
     private LocalDateTime createdAt = LocalDateTime.now();
 
     private LocalDateTime expiryDate;
@@ -42,16 +56,14 @@ public class FoodItem {
     private Restaurant restaurant;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "foodItem")
-    private List<FoodRequest> requests;
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "foodItem")
     private List<Matching> matchings;
+
+    @ElementCollection
+    private List<String> imagesUrls;
 
     //@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "foodItem")
     //private List<FoodItemImage> images;
 
-    @ElementCollection
-    private List<String> imagesUrls;
 
    //public FoodItem setImages(List<String> imagesUrls) {
    //    List<FoodItemImage> images = new ArrayList<>();

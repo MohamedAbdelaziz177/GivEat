@@ -29,7 +29,17 @@ public class ReadFoodItemDto extends Dto {
 
     private String foodCondition;
 
+    private String foodCategory;
+
+    private String itemStatus;
+
     private LocalDateTime expiryDate;
+
+    private boolean halalCertified;
+
+    private boolean kosherCertified;
+
+    private boolean vegetarianFriendly;
 
     private List<String> imageUrls;
 }

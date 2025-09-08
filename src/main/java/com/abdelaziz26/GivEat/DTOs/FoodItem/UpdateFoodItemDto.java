@@ -18,9 +18,6 @@ import java.util.List;
 @Builder
 public class UpdateFoodItemDto extends Dto{
 
-    @Size(min = 4, max = 20)
-    private String name;
-
     @Size(min = 10, max = 200)
     private String description;
 
@@ -28,12 +25,22 @@ public class UpdateFoodItemDto extends Dto{
     private double quantity;
 
     @NotBlank
-    private String quantityUnit;
+    private String unit;
 
     @NotBlank
-    private String foodCondition;
+    private String condition;
 
-    @NotNull
+    @NotBlank
+    private String foodCategory;
+
+    private String itemStatus;
+
+    private boolean halalCertified = true;
+
+    private boolean kosherCertified;
+
+    private boolean vegetarianFriendly;
+
     private LocalDateTime expiryDate;
 
     @Size(min = 1, max = 5)
