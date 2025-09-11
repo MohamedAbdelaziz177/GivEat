@@ -21,6 +21,7 @@ import java.util.List;
 @Builder
 @Getter
 @Setter
+@ToString(exclude = {"charity", "matchings"})
 public class FoodRequest {
 
     @Id

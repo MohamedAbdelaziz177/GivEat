@@ -18,6 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
+@ToString(exclude = {"matchings", "imagesUrls", "restaurant"})
 public class FoodItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
