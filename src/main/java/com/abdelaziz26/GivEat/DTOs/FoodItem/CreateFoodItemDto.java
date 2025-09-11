@@ -52,8 +52,6 @@ public class CreateFoodItemDto extends Dto{
     @NotNull
     private LocalDateTime expiryDate;
 
-    private Long restaurantId;
-
     @Size(min = 1, max = 5)
     private List<MultipartFile> images = new ArrayList<>();
 }

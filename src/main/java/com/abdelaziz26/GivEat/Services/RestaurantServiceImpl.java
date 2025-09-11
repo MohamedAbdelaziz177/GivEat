@@ -80,8 +80,11 @@ public class RestaurantServiceImpl implements RestaurantService {
         List<FoodType> foodTypes = new ArrayList<>();
         createRestaurantDto.getFoodTypes().stream().forEach(foodType -> {
 
-            FoodType type = foodTypeRepository.findByName(FoodTypeEn.valueOf(foodType.toUpperCase())).orElseThrow(() ->
-                    new EntityNotFoundException("Food type not found with name: " + foodType));
+            FoodType type = foodTypeRepository.findByName(FoodTypeEn.valueOf(foodType.toUpperCase())).orElseGet(() -> {
+                FoodType newType = new FoodType();
+                newType.setName(FoodTypeEn.valueOf(foodType.toUpperCase()));
+                return foodTypeRepository.save(newType);
+            });
 
             foodTypes.add(type);
         });
