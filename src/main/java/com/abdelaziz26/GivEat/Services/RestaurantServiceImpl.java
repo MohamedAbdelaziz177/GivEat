@@ -1,6 +1,5 @@
 package com.abdelaziz26.GivEat.Services;
 
-import com.abdelaziz26.GivEat.Core.Entities.Charity;
 import com.abdelaziz26.GivEat.Core.Entities.Dish;
 import com.abdelaziz26.GivEat.Core.Entities.FoodType;
 import com.abdelaziz26.GivEat.Core.Entities.Restaurant;
@@ -8,22 +7,16 @@ import com.abdelaziz26.GivEat.Core.Enums.FoodTypeEn;
 import com.abdelaziz26.GivEat.Core.Interfaces.RestaurantService;
 import com.abdelaziz26.GivEat.Core.MagicValues;
 import com.abdelaziz26.GivEat.Core.Repositories.*;
-import com.abdelaziz26.GivEat.DTOs.Charity.CreateCharityDto;
-import com.abdelaziz26.GivEat.DTOs.Charity.ReadCharityDto;
-import com.abdelaziz26.GivEat.DTOs.Charity.UpdateCharityDto;
 import com.abdelaziz26.GivEat.DTOs.Restaurant.CreateRestaurantDto;
 import com.abdelaziz26.GivEat.DTOs.Restaurant.ReadRestaurantDto;
 import com.abdelaziz26.GivEat.DTOs.Restaurant.UpdateRestaurantDto;
-import com.abdelaziz26.GivEat.Mappers.CharityMapper;
 import com.abdelaziz26.GivEat.Mappers.RestaurantMapper;
 import com.abdelaziz26.GivEat.Utils.AuthUtil;
-import com.abdelaziz26.GivEat.Utils.CloudinaryService;
+import com.abdelaziz26.GivEat.Utils.CloudinaryUtil;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.repository.support.Repositories;
 import org.springframework.security.access.AuthorizationServiceException;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -37,7 +30,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     private final RestaurantRepository restaurantRepository;
     private final RestaurantMapper restaurantMapper;
     private final UserRepo userRepo;
-    private final CloudinaryService cloudinaryService;
+    private final CloudinaryUtil cloudinaryService;
     private final AuthUtil authUtil;
     private final DishRepository dishRepository;
     private final FoodTypeRepository foodTypeRepository;

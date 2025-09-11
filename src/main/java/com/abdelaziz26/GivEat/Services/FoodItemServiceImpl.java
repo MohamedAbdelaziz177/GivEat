@@ -13,7 +13,7 @@ import com.abdelaziz26.GivEat.DTOs.FoodItem.ReadFoodItemDto;
 import com.abdelaziz26.GivEat.DTOs.FoodItem.UpdateFoodItemDto;
 import com.abdelaziz26.GivEat.Mappers.FoodItemMapper;
 import com.abdelaziz26.GivEat.Utils.AuthUtil;
-import com.abdelaziz26.GivEat.Utils.CloudinaryService;
+import com.abdelaziz26.GivEat.Utils.CloudinaryUtil;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +35,7 @@ public class FoodItemServiceImpl implements FoodItemService {
     private final FoodItemRepository foodItemRepository;
     private final RestaurantRepository restaurantRepository;
     private final UserRepo userRepository;
-    private final CloudinaryService cloudinaryService;
+    private final CloudinaryUtil cloudinaryService;
     private final FoodItemMapper foodItemMapper;
     private final AuthUtil authUtil;
 

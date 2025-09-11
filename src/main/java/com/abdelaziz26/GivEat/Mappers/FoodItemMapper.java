@@ -10,12 +10,10 @@ import com.abdelaziz26.GivEat.Core.Interfaces.Mapper;
 import com.abdelaziz26.GivEat.DTOs.FoodItem.CreateFoodItemDto;
 import com.abdelaziz26.GivEat.DTOs.FoodItem.ReadFoodItemDto;
 import com.abdelaziz26.GivEat.DTOs.FoodItem.UpdateFoodItemDto;
-import com.abdelaziz26.GivEat.Utils.CloudinaryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

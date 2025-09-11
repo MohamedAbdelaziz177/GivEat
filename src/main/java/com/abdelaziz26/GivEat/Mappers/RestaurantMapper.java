@@ -3,19 +3,13 @@ package com.abdelaziz26.GivEat.Mappers;
 import com.abdelaziz26.GivEat.Core.Entities.Dish;
 import com.abdelaziz26.GivEat.Core.Entities.FoodType;
 import com.abdelaziz26.GivEat.Core.Entities.Restaurant;
-import com.abdelaziz26.GivEat.Core.Enums.FoodTypeEn;
 import com.abdelaziz26.GivEat.Core.Interfaces.Mapper;
-import com.abdelaziz26.GivEat.Core.MagicValues;
-import com.abdelaziz26.GivEat.DTOs.Charity.CreateCharityDto;
 import com.abdelaziz26.GivEat.DTOs.Restaurant.CreateRestaurantDto;
 import com.abdelaziz26.GivEat.DTOs.Restaurant.ReadRestaurantDto;
 import com.abdelaziz26.GivEat.DTOs.Restaurant.UpdateRestaurantDto;
-import com.abdelaziz26.GivEat.Utils.CloudinaryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
