@@ -19,7 +19,6 @@ import java.util.List;
 @Builder
 public class UpdateRestaurantDto extends Dto {
 
-    @Nullable
     private MultipartFile logo;
 
     @Size(min = 4, max = 30)

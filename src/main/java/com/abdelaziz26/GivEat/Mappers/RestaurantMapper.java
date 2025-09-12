@@ -6,6 +6,7 @@ import com.abdelaziz26.GivEat.Core.Entities.Restaurant;
 import com.abdelaziz26.GivEat.Core.Interfaces.Mapper;
 import com.abdelaziz26.GivEat.DTOs.Restaurant.CreateRestaurantDto;
 import com.abdelaziz26.GivEat.DTOs.Restaurant.ReadRestaurantDto;
+import com.abdelaziz26.GivEat.DTOs.Restaurant.RestaurantLightDto;
 import com.abdelaziz26.GivEat.DTOs.Restaurant.UpdateRestaurantDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -40,7 +41,8 @@ public class RestaurantMapper implements Mapper<Restaurant, ReadRestaurantDto, C
                 .description(restaurant.getDescription())
                 .locations(restaurant.getAddress())
                 .dishes(restaurant.getDishes().stream().map(Dish::getName).collect(Collectors.toList()))
-                .foodTypes(restaurant.getFoodTypes().stream().map(FoodType::getName).toList())
+                .foodTypes(restaurant.getFoodTypes().stream().map(ft -> ft.getName().toString()).toList())
+                .id(restaurant.getId())
                 .build();
     }
 
@@ -53,5 +55,14 @@ public class RestaurantMapper implements Mapper<Restaurant, ReadRestaurantDto, C
         restaurant.setAddress(updateRestaurantDto.getLocations());
 
         return restaurant;
+    }
+
+    public RestaurantLightDto toLightDto(Restaurant restaurant) {
+        return RestaurantLightDto.builder()
+                .id(restaurant.getId())
+                .logoUrl(restaurant.getImageUrl())
+                .name(restaurant.getName())
+                .ContactNumber(restaurant.getContactNumber())
+                .build();
     }
 }

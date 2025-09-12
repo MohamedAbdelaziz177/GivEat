@@ -19,6 +19,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FoodItemMapper implements Mapper<FoodItem, ReadFoodItemDto, CreateFoodItemDto, UpdateFoodItemDto> {
 
+    private final RestaurantMapper restaurantMapper;
+
     @Override
     public FoodItem toEntity(CreateFoodItemDto createFoodItemDto, List<String> imagesUrls) {
         return FoodItem.builder()
@@ -54,6 +56,7 @@ public class FoodItemMapper implements Mapper<FoodItem, ReadFoodItemDto, CreateF
                 .kosherCertified(foodItem.isKosherCertified())
                 .vegetarianFriendly(foodItem.isVegetarianFriendly())
                 .imageUrls(foodItem.getImagesUrls())
+                .restaurantLightDto(restaurantMapper.toLightDto(foodItem.getRestaurant()))
                 .build();
     }
 
