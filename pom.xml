@@ -147,11 +147,6 @@
             <version>1.0.0</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.Abdelaziz26</groupId>
-            <artifactId>GivEat</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
 
     </dependencies>
 
