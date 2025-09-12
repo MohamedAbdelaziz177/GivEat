@@ -10,6 +10,8 @@ import lombok.*;
 @Builder
 public class FoodItemMatchedDto {
 
+    private Long matchId;
     private ReadFoodItemDto readFoodItemDto;
     private double score;
+
 }
