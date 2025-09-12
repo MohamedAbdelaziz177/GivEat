@@ -17,25 +17,18 @@ import java.util.List;
 @Builder
 public class ReadRestaurantDto extends Dto {
 
+    private Long id;
+
     private String logoUrl;
 
-    @Size(min = 4, max = 30)
-    @NotBlank
     private String name;
 
-    @NotBlank
-    @Size(min = 4, max = 12)
     private String ContactNumber;
 
-    @NotBlank
-    @Size(min = 4, max = 120)
     private String description;
 
-    @Size(min = 1)
-    @Enumerated(EnumType.STRING)
-    List<FoodTypeEn> foodTypes;
+    List<String> foodTypes;
 
-    @Size(min = 1)
     List<String> dishes;
 
     String locations;

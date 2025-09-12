@@ -60,7 +60,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 
         List<Dish> dishes = new ArrayList<>();
 
-        createRestaurantDto.getDishes().stream().forEach(dish -> {
+        createRestaurantDto.getDishes().forEach(dish -> {
             Dish existedDish = dishRepository.findByNameIgnoreCase(dish).orElseGet(() -> {
                 Dish newDish = new Dish();
                 newDish.setName(dish);

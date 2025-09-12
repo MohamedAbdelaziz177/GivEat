@@ -1,6 +1,8 @@
 package com.abdelaziz26.GivEat.DTOs.FoodItem;
 
 import com.abdelaziz26.GivEat.DTOs.Dto;
+import com.abdelaziz26.GivEat.DTOs.Restaurant.RestaurantLightDto;
+import jakarta.persistence.MappedSuperclass;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -9,6 +11,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import lombok.*;
+import org.stringtemplate.v4.ST;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -40,6 +43,8 @@ public class ReadFoodItemDto extends Dto {
     private boolean kosherCertified;
 
     private boolean vegetarianFriendly;
+
+    private RestaurantLightDto restaurantLightDto;
 
     private List<String> imageUrls;
 }
