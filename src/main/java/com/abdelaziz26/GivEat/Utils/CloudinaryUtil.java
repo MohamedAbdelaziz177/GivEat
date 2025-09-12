@@ -11,7 +11,7 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-public class CloudinaryService {
+public class CloudinaryUtil {
 
     private final Cloudinary cloudinary;
 

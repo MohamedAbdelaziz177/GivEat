@@ -14,7 +14,6 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD_DEV:-1234}
       POSTGRES_DB: giveat_dev
 
-
   pgadmin:
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL_DEV:-mohamecabdelaziz66@gmail.com}

@@ -14,15 +14,31 @@ import java.time.LocalDateTime;
 @Builder
 public class ReadRequestDto extends Dto {
 
-    private String imageUrl;
+    private Long id;
 
-    private String foodName;
+    private String name;
 
     private double quantity;
 
-    private String unit = "kg";
+    private String unit;
 
     private LocalDateTime requestDate;
+
+    private LocalDateTime expiryLimit;
+
+    private String condition;
+
+    private String foodCategory;
+
+    private String status;
+
+    private int urgency;
+
+    private boolean requiresHalal;
+
+    private boolean requiresKosher;
+
+    private boolean vegetarianOnly;
 
     private ReadCharityDto charityDto;
 }

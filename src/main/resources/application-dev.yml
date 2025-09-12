@@ -1,7 +1,7 @@
 spring:
 
   datasource:
-    url: jdbc:postgresql://postgres:5432/giveat_dev #${DB_URL_DOCKER}
+    url: jdbc:postgresql://localhost:5432/giveat_dev #${DB_URL_DOCKER:jdbc:postgresql://postgres:5432/giveat_dev}
     username: admin #${DB_USER_DEV:admin}
     password: 1234 #${DB_PASSWORD_DEV:1234}
 

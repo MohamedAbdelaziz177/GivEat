@@ -26,7 +26,7 @@ import io.swagger.v3.oas.annotations.servers.Server;
         servers = {
                 @Server(
                         description = "Development and Testing environments",
-                        url = "http://localhost:8080"
+                        url = "http://localhost:8088"
                 ),
 
                 @Server(

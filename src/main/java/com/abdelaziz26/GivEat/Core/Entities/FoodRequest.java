@@ -1,11 +1,15 @@
 package com.abdelaziz26.GivEat.Core.Entities;
 
+import com.abdelaziz26.GivEat.Core.Enums.FoodCategory;
 import com.abdelaziz26.GivEat.Core.Enums.FoodCondition;
 import com.abdelaziz26.GivEat.Core.Enums.FoodRequestStatus;
 import com.abdelaziz26.GivEat.Core.Enums.QuantityUnit;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
+import org.hibernate.validator.constraints.Range;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -17,6 +21,7 @@ import java.util.List;
 @Builder
 @Getter
 @Setter
+@ToString(exclude = {"charity", "matchings"})
 public class FoodRequest {
 
     @Id
@@ -29,11 +34,13 @@ public class FoodRequest {
     @NotBlank
     private String name;
 
+    @Positive
     private double quantity;
 
     @Enumerated(EnumType.STRING)
     private QuantityUnit unit;
 
+    @Nullable
     private LocalDateTime expiryLimit;
 
     @Enumerated(EnumType.STRING)
@@ -42,9 +49,17 @@ public class FoodRequest {
     @Enumerated(EnumType.STRING)
     private FoodRequestStatus status;
 
-    @ManyToOne
-    @JoinColumn(name = "food_item_id")
-    private FoodItem foodItem;
+    @Enumerated(EnumType.STRING)
+    private FoodCategory foodCategory;
+
+    @Range(min = 1, max = 5)
+    private int urgency;
+
+    private boolean requiresHalal;
+
+    private boolean requiresKosher;
+
+    private boolean vegetarianOnly;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "charity_id")

@@ -12,7 +12,7 @@ import com.abdelaziz26.GivEat.Core.Interfaces.AuthService;
 import com.abdelaziz26.GivEat.Core.Repositories.RoleRepo;
 import com.abdelaziz26.GivEat.Core.Repositories.UserRepo;
 import com.abdelaziz26.GivEat.Utils.JwtUtil;
-import com.abdelaziz26.GivEat.Utils.MailService;
+import com.abdelaziz26.GivEat.Utils.MailUtil;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -35,7 +35,7 @@ import java.util.*;
 public class AuthServiceImpl implements AuthService {
 
     private final JwtUtil jwtService;
-    private final MailService mailService;
+    private final MailUtil mailService;
     private final AuthenticationManager authenticationManager;
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
