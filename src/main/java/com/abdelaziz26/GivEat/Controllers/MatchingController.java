@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/matching/")
+@RequestMapping("/api/matching")
 public class MatchingController {
 
     @GetMapping("/charity")
@@ -31,6 +31,13 @@ public class MatchingController {
 
     @PutMapping("/restaurant/reject")
     public ResponseEntity<ApiResponse<?>> rejectMatch(@RequestParam Long requestId)
+    {
+        ApiResponse<?> response = new ApiResponse<>();
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/restaurant")
+    public ResponseEntity<ApiResponse<?>> getMatchingByResId(@RequestParam Long restaurantId)
     {
         ApiResponse<?> response = new ApiResponse<>();
         return ResponseEntity.ok(response);
