@@ -5,6 +5,7 @@ import com.abdelaziz26.GivEat.Core.Entities.FoodRequest;
 import com.abdelaziz26.GivEat.Core.Entities.Matching;
 import com.abdelaziz26.GivEat.Core.Enums.FoodItemStatus;
 import com.abdelaziz26.GivEat.Core.Enums.FoodRequestStatus;
+import com.abdelaziz26.GivEat.Core.Enums.MatchingStatus;
 import com.abdelaziz26.GivEat.Core.Interfaces.MatchingService;
 import com.abdelaziz26.GivEat.Core.Repositories.FoodItemRepository;
 import com.abdelaziz26.GivEat.Core.Repositories.FoodRequestRepository;
@@ -19,11 +20,14 @@ import com.abdelaziz26.GivEat.Utils.OpenAiUtil;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.AuthorizationServiceException;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
+@Service
 public class MatchingServiceImpl implements MatchingService {
 
     private final OpenAiUtil openAiUtil;
@@ -77,12 +81,15 @@ public class MatchingServiceImpl implements MatchingService {
 
         request.setStatus(FoodRequestStatus.DELIVERED);
         item.setFoodItemStatus(FoodItemStatus.REQUESTED);
+        matching.setMatchingStatus(MatchingStatus.REQUESTED);
 
         foodItemRepository.save(item);
         foodRequestRepository.save(request);
+        matchingRepository.save(matching);
 
         // SEND NOTIFICATION TO THE RESTAURANT -> To be implemented
     }
+
 
     @Override
     public void acceptMatchRequest(Long matchingId) {
@@ -98,9 +105,11 @@ public class MatchingServiceImpl implements MatchingService {
 
         request.setStatus(FoodRequestStatus.ACCEPTED);
         item.setFoodItemStatus(FoodItemStatus.UNAVAILABLE);
+        matching.setMatchingStatus(MatchingStatus.ACCEPTED);
 
         foodItemRepository.save(item);
         foodRequestRepository.save(request);
+        matchingRepository.save(matching);
 
         this.rejectAllTheOthers(matchingId);
     }
@@ -119,9 +128,11 @@ public class MatchingServiceImpl implements MatchingService {
 
         request.setStatus(FoodRequestStatus.REJECTED);
         item.setFoodItemStatus(FoodItemStatus.AVAILABLE);
+        matching.setMatchingStatus(MatchingStatus.REJECTED);
 
         foodItemRepository.save(item);
         foodRequestRepository.save(request);
+        matchingRepository.save(matching);
 
     }
 

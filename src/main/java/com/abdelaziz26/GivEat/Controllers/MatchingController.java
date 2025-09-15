@@ -1,42 +1,54 @@
 package com.abdelaziz26.GivEat.Controllers;
 
 import com.abdelaziz26.GivEat.Core.ApiResponse;
+import com.abdelaziz26.GivEat.Core.Interfaces.MatchingService;
+import com.abdelaziz26.GivEat.DTOs.Matching.FoodItemMatchedDto;
+import com.abdelaziz26.GivEat.DTOs.Matching.MatchingResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/matching")
+@RequiredArgsConstructor
 public class MatchingController {
 
+    private final MatchingService matchingService;
+
     @GetMapping("/charity")
-    public ResponseEntity<ApiResponse<?>> getMatchingByReqId(@RequestParam Long requestId)
+    public ResponseEntity<ApiResponse<List<FoodItemMatchedDto>>> getMatchingByReqId(@RequestParam Long requestId)
     {
-        ApiResponse<?> response = new ApiResponse<>();
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok( ApiResponse
+                .createSuccessResponse(matchingService
+                        .getMatchedItems(requestId)
+                )
+        );
     }
 
-    @PutMapping("/charity")
-    public ResponseEntity<ApiResponse<?>> requestMatch(@RequestParam Long itemId)
+    @PutMapping("/charity/request")
+    public ResponseEntity<ApiResponse<String>> requestMatch(@RequestParam Long matchId)
     {
-        ApiResponse<?> response = new ApiResponse<>();
-        return ResponseEntity.ok(response);
+        matchingService.requestMatchedItem(matchId);
+        return ResponseEntity.ok(ApiResponse.createSuccessResponse("Item requested successfully"));
     }
 
     @PutMapping("/restaurant/accept")
-    public ResponseEntity<ApiResponse<?>> acceptMatch(@RequestParam Long requestId)
+    public ResponseEntity<ApiResponse<String>> acceptMatch(@RequestParam Long matchId)
     {
-        ApiResponse<?> response = new ApiResponse<>();
-        return ResponseEntity.ok(response);
+        matchingService.acceptMatchRequest(matchId);
+        return ResponseEntity.ok(ApiResponse.createSuccessResponse("Request accepted successfully"));
     }
 
     @PutMapping("/restaurant/reject")
-    public ResponseEntity<ApiResponse<?>> rejectMatch(@RequestParam Long requestId)
+    public ResponseEntity<ApiResponse<String>> rejectMatch(@RequestParam Long matchId)
     {
-        ApiResponse<?> response = new ApiResponse<>();
-        return ResponseEntity.ok(response);
+        matchingService.acceptMatchRequest(matchId);
+        return ResponseEntity.ok(ApiResponse.createSuccessResponse("Request rejected successfully"));
     }
 
-    @GetMapping("/restaurant")
+    @GetMapping("/restaurant/my-matches")
     public ResponseEntity<ApiResponse<?>> getMatchingByResId(@RequestParam Long restaurantId)
     {
         ApiResponse<?> response = new ApiResponse<>();

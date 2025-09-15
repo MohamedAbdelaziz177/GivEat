@@ -41,8 +41,10 @@ public class SecurityConfig {
                                     "/swagger-ui/**",
                                     "/swagger-ui.html")
                             .permitAll()
-                            .requestMatchers("/api/food-request/**").hasRole("CHARITY")
-                            .requestMatchers("/api/food-item/**").hasRole("RESTAURANT")
+                            .requestMatchers("/api/food-request/**",
+                                    "/api/matching/charity/**").hasRole("CHARITY")
+                            .requestMatchers("/api/food-item/**",
+                                    "/api/matching/restaurant/**").hasRole("RESTAURANT")
                             .anyRequest().authenticated();
                 })
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
