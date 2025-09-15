@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface MatchingService {
 
+    @PreAuthorize("hasRole('CHARITY')")
     List<FoodItemMatchedDto> getMatchedItems(Long requestId);
 
     @PreAuthorize("hasRole('CHARITY')")
