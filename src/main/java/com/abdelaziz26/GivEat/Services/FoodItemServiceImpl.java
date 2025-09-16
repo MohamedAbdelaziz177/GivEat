@@ -8,9 +8,7 @@ import com.abdelaziz26.GivEat.Core.MagicValues;
 import com.abdelaziz26.GivEat.Core.Repositories.FoodItemRepository;
 import com.abdelaziz26.GivEat.Core.Repositories.RestaurantRepository;
 import com.abdelaziz26.GivEat.Core.Repositories.UserRepo;
-import com.abdelaziz26.GivEat.DTOs.FoodItem.CreateFoodItemDto;
-import com.abdelaziz26.GivEat.DTOs.FoodItem.ReadFoodItemDto;
-import com.abdelaziz26.GivEat.DTOs.FoodItem.UpdateFoodItemDto;
+import com.abdelaziz26.GivEat.DTOs.FoodItem.*;
 import com.abdelaziz26.GivEat.Mappers.FoodItemMapper;
 import com.abdelaziz26.GivEat.Utils.AuthUtil;
 import com.abdelaziz26.GivEat.Utils.CloudinaryUtil;
@@ -65,6 +63,7 @@ public class FoodItemServiceImpl implements FoodItemService {
         return foodItemList.stream().map(foodItemMapper::toResponse).toList();
     }
 
+
     @PreAuthorize("hasRole('RESTAURANT')")
     @Transactional
     public ReadFoodItemDto create(CreateFoodItemDto createFoodItemDto)
@@ -117,4 +116,32 @@ public class FoodItemServiceImpl implements FoodItemService {
         return foodItemMapper.toResponse(foodItemRepository.save(item));
     }
 
+    @Override
+    public void deleteFoodItem(Long id) {
+        FoodItem item = foodItemRepository.findById(id).orElseThrow(() ->
+                new EntityNotFoundException("Food item not found with id: " + id));
+
+        foodItemRepository.delete(item);
+    }
+
+    @Override
+    public ReadFoodItemDto addImg(AddFoodItemImgDto addFoodItemImgDto) throws IOException {
+
+        Long userId = authUtil.getUserId();
+
+        User user = userRepository.findById(userId).orElseThrow(() ->
+                new AuthenticationServiceException("User not found with id: " + userId));
+
+        FoodItem item = foodItemRepository.findById(addFoodItemImgDto.getFoodItemId()).orElseThrow(() ->
+                new EntityNotFoundException("Food item not found with id: " + addFoodItemImgDto.getFoodItemId()));
+
+        if(!Objects.equals(item.getRestaurant().getId(), user.getRestaurant().getId()))
+            throw new AuthorizationServiceException("You are not authorized to update this food item");
+
+        String imgUrl = cloudinaryService.upload(addFoodItemImgDto.getImage(), MagicValues.FOOD_FOLDER);
+
+        item.getImagesUrls().add(imgUrl);
+
+        return foodItemMapper.toResponse(foodItemRepository.save(item));
+    }
 }

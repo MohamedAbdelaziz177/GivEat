@@ -9,6 +9,6 @@ public class NotificationController {
 
     @RequestMapping("/mine")
     public String getNotifications() {
-        return "Notification";
+       return "TO BE IMPLEMENTED";
     }
 }

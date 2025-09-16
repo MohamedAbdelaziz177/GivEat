@@ -2,9 +2,7 @@ package com.abdelaziz26.GivEat.Controllers;
 
 import com.abdelaziz26.GivEat.Core.ApiResponse;
 import com.abdelaziz26.GivEat.Core.Interfaces.FoodItemService;
-import com.abdelaziz26.GivEat.DTOs.FoodItem.CreateFoodItemDto;
-import com.abdelaziz26.GivEat.DTOs.FoodItem.ReadFoodItemDto;
-import com.abdelaziz26.GivEat.DTOs.FoodItem.UpdateFoodItemDto;
+import com.abdelaziz26.GivEat.DTOs.FoodItem.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +23,6 @@ public class FoodItemController {
         ApiResponse<ReadFoodItemDto> apiResponse = ApiResponse.createSuccessResponse(readFoodItemDto);
         return ResponseEntity.ok(apiResponse);
     }
-
 
     @GetMapping("/all")
     public ResponseEntity<ApiResponse<List<ReadFoodItemDto>>> getAll() {
@@ -62,12 +59,19 @@ public class FoodItemController {
         return ResponseEntity.ok(apiResponse);
     }
 
-    //@DeleteMapping("/{id}")
-    //public ResponseEntity<ApiResponse<Void>> delete(@PathVariable Long id) {
-    //    foodItemService.delete(id);
-    //    ApiResponse<Void> apiResponse = ApiResponse.createSuccessResponse(null);
-    //    return ResponseEntity.ok(apiResponse);
-    //}
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse<Void>> delete(@PathVariable Long id) {
+        foodItemService.deleteFoodItem(id);
+        ApiResponse<Void> apiResponse = ApiResponse.createSuccessResponse(null);
+        return ResponseEntity.ok(apiResponse);
+    }
+
+    @PostMapping("/add-img")
+    public ResponseEntity<ApiResponse<ReadFoodItemDto>> addImg(@ModelAttribute AddFoodItemImgDto addFoodItemImgDto) throws IOException {
+        ReadFoodItemDto res = foodItemService.addImg(addFoodItemImgDto);
+        ApiResponse<ReadFoodItemDto> apiResponse = ApiResponse.createSuccessResponse(res);
+        return ResponseEntity.status(HttpStatus.CREATED).body(apiResponse);
+    }
 
 
 }

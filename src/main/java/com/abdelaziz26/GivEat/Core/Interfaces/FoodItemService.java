@@ -1,8 +1,6 @@
 package com.abdelaziz26.GivEat.Core.Interfaces;
 
-import com.abdelaziz26.GivEat.DTOs.FoodItem.CreateFoodItemDto;
-import com.abdelaziz26.GivEat.DTOs.FoodItem.ReadFoodItemDto;
-import com.abdelaziz26.GivEat.DTOs.FoodItem.UpdateFoodItemDto;
+import com.abdelaziz26.GivEat.DTOs.FoodItem.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -15,4 +13,6 @@ public interface FoodItemService {
     ReadFoodItemDto update(Long id, UpdateFoodItemDto updateFoodItemDto) throws IOException;
     List<ReadFoodItemDto> getAllByRestaurantId(Long restaurantId);
     List<ReadFoodItemDto> getMyFoodItems();
- }
+    void deleteFoodItem(Long id);
+    ReadFoodItemDto addImg(AddFoodItemImgDto addFoodItemImgDto) throws IOException;
+}
