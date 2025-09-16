@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -46,7 +47,7 @@ public class MatchingServiceImpl implements MatchingService {
         Charity charity = charityRepository.findByUser_Id(userId).orElseThrow(() ->
                 new EntityNotFoundException("Charity not found with id: " + userId));
 
-        List<Matching> matches = matchingRepository.findAllByCharityId(charity.getId());
+        List<Matching> matches = matchingRepository.findAllByCharityId(charity.getId(), MatchingStatus.ACCEPTED);
         return matches.stream().map(matchingMapper::mapToMatchedItemDto).toList();
     }
 
@@ -58,7 +59,7 @@ public class MatchingServiceImpl implements MatchingService {
         Restaurant restaurant = restaurantRepository.findByUser_Id(userId).orElseThrow(() ->
                 new EntityNotFoundException("Restaurant not found with id: " + userId));
 
-        List<Matching> matches = matchingRepository.findAllByRestaurantId(restaurant.getId());
+        List<Matching> matches = matchingRepository.findAllByRestaurantId(restaurant.getId(), MatchingStatus.REQUESTED);
         return matches.stream().map(matchingMapper::mapToMatchedItemDto).toList();
     }
 
@@ -77,6 +78,7 @@ public class MatchingServiceImpl implements MatchingService {
                     .foodItem(item)
                     .foodRequest(request)
                     .matchingScore(matchingResponse.getScore())
+                    .matchingStatus(MatchingStatus.IGNORED)
                     .build();
 
             matchingRepository.save(matching);
@@ -161,6 +163,6 @@ public class MatchingServiceImpl implements MatchingService {
     }
 
     private void rejectAllTheOthers(Long requestId) {
-
+        matchingRepository.rejectOthersWhenAcceptance(requestId);
     }
 }
