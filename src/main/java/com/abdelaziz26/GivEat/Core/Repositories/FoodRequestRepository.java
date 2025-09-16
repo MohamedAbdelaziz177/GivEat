@@ -10,5 +10,4 @@ import java.util.List;
 public interface FoodRequestRepository extends JpaRepository<FoodRequest, Long> {
     List<FoodRequest> findByCharity(Charity charity);
 
-    //List<FoodRequest> findByRestaurant(Restaurant restaurant);
 }

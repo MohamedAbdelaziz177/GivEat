@@ -19,4 +19,10 @@ public interface MatchingService {
 
     @PreAuthorize("hasRole('RESTAURANT')")
     void rejectMatchRequest(Long requestId);
+
+    @PreAuthorize("hasRole('CHARITY')")
+    List<FoodItemMatchedDto> getMatchesByCharity();
+
+    @PreAuthorize("hasRole('RESTAURANT')")
+    List<FoodItemMatchedDto> getMatchesByRestaurant();
 }

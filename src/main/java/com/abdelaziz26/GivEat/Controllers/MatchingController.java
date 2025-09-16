@@ -49,9 +49,22 @@ public class MatchingController {
     }
 
     @GetMapping("/restaurant/my-matches")
-    public ResponseEntity<ApiResponse<?>> getMatchingByResId(@RequestParam Long restaurantId)
+    public ResponseEntity<ApiResponse<List<FoodItemMatchedDto>>> getMatchingByResId()
     {
-        ApiResponse<?> response = new ApiResponse<>();
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(ApiResponse
+                .createSuccessResponse(matchingService
+                        .getMatchesByRestaurant()
+                )
+        );
+    }
+
+    @GetMapping("/charity/my-matches")
+    public ResponseEntity<ApiResponse<List<FoodItemMatchedDto>>> getMatchingByCharityId()
+    {
+        return ResponseEntity.ok(ApiResponse
+                .createSuccessResponse(matchingService
+                        .getMatchesByCharity()
+                )
+        );
     }
 }

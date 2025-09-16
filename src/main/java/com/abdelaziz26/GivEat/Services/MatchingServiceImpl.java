@@ -1,22 +1,20 @@
 package com.abdelaziz26.GivEat.Services;
 
-import com.abdelaziz26.GivEat.Core.Entities.FoodItem;
-import com.abdelaziz26.GivEat.Core.Entities.FoodRequest;
-import com.abdelaziz26.GivEat.Core.Entities.Matching;
+import com.abdelaziz26.GivEat.Core.Entities.*;
 import com.abdelaziz26.GivEat.Core.Enums.FoodItemStatus;
 import com.abdelaziz26.GivEat.Core.Enums.FoodRequestStatus;
 import com.abdelaziz26.GivEat.Core.Enums.MatchingStatus;
 import com.abdelaziz26.GivEat.Core.Interfaces.MatchingService;
-import com.abdelaziz26.GivEat.Core.Repositories.FoodItemRepository;
-import com.abdelaziz26.GivEat.Core.Repositories.FoodRequestRepository;
-import com.abdelaziz26.GivEat.Core.Repositories.MatchingRepository;
+import com.abdelaziz26.GivEat.Core.Repositories.*;
 import com.abdelaziz26.GivEat.DTOs.FoodItem.ReadFoodItemDto;
 import com.abdelaziz26.GivEat.DTOs.Matching.FoodItemMatchedDto;
 import com.abdelaziz26.GivEat.DTOs.Matching.MatchingResponse;
 import com.abdelaziz26.GivEat.Mappers.FoodItemMapper;
 import com.abdelaziz26.GivEat.Mappers.FoodRequestMapper;
+import com.abdelaziz26.GivEat.Mappers.MatchingMapper;
 import com.abdelaziz26.GivEat.Utils.AuthUtil;
 import com.abdelaziz26.GivEat.Utils.OpenAiUtil;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.AuthorizationServiceException;
@@ -36,6 +34,33 @@ public class MatchingServiceImpl implements MatchingService {
     private final MatchingRepository matchingRepository;
     private final FoodItemRepository foodItemRepository;
     private final FoodRequestRepository foodRequestRepository;
+    private final CharityRepository charityRepository;
+    private final RestaurantRepository restaurantRepository;
+    private final MatchingMapper matchingMapper;
+
+    @Override
+    public List<FoodItemMatchedDto> getMatchesByCharity() {
+
+        Long userId = authUtil.getUserId();
+
+        Charity charity = charityRepository.findByUser_Id(userId).orElseThrow(() ->
+                new EntityNotFoundException("Charity not found with id: " + userId));
+
+        List<Matching> matches = matchingRepository.findAllByCharityId(charity.getId());
+        return matches.stream().map(matchingMapper::mapToMatchedItemDto).toList();
+    }
+
+    @Override
+    public List<FoodItemMatchedDto> getMatchesByRestaurant() {
+
+        Long userId = authUtil.getUserId();
+
+        Restaurant restaurant = restaurantRepository.findByUser_Id(userId).orElseThrow(() ->
+                new EntityNotFoundException("Restaurant not found with id: " + userId));
+
+        List<Matching> matches = matchingRepository.findAllByRestaurantId(restaurant.getId());
+        return matches.stream().map(matchingMapper::mapToMatchedItemDto).toList();
+    }
 
     @Override
     public List<FoodItemMatchedDto> getMatchedItems(Long requestId) {
@@ -89,7 +114,6 @@ public class MatchingServiceImpl implements MatchingService {
 
         // SEND NOTIFICATION TO THE RESTAURANT -> To be implemented
     }
-
 
     @Override
     public void acceptMatchRequest(Long matchingId) {
